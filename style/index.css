@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.arrow {
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    border-top: 5px solid black;
+    border-right: 5px solid black;
+    transform: rotate(-135deg);
+}
+
+.blue-color{
+    background-color: rgb(43,160,199);
+}
+
+.m0a{
+    margin: 0 auto;
+}
+
+.main-wrapper{
+    font-size: 15px;
+}
+
+.list-wrapper{
+    width: 700px;
+    position: absolute;
+    left: calc(50% - 350px);
+    transition: left 0.35s ease-out;
+}
+
+.operator-wrapper{
+    height: 100px;
+    display: flex;
+    margin: 5px;
+    padding: 10px;
+}
+
+.operator-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.operator{
+    height: 100px;
+    display: flex;
+    margin: 20px 0 20px 0;
+    padding: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.operator-name{
+    font-size: 4em;
+}
+
+.image-wrapper {
+    width: 150px;
+    text-align: center;
+    border-radius: 25px;
+    margin-right: 20px;
+    background: white;
+}
+
+.operator-logo {
+    height: 70px;
+    max-width: 80%;
+    margin: 15px 0 15px 0;
+}
+
+.pays-wrapper{
+    width: 700px;
+    position: absolute;
+    right: calc(50% - 350px);
+    transition: right 0.35s ease-out;
+}
+
+.left{
+    left: -1500px;
+    transition: left 0.35s ease-out;
+}
+
+.right{
+    right: -1500px;
+    transition: right 0.35s ease-out;
+}
+
+.hidden{
+    display: none;
+}
+
+.inner-pay-page{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pay-button{
+    margin: 5px auto;
+    width: 300px;
+    border: none;
+    cursor: pointer;
+    color: black;
+    font-size: 1.75em;
+}
