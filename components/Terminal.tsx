@@ -45,7 +45,7 @@ const TerminalPage: React.FC = () => {
                     <h1>Выберите оператора для оплаты</h1>
                     <ul className='operator-list'>
                         {operators.map(operator => {
-                            return <Operator content={operator} key={operator.id} setState={setState}/>
+                            return <Operator content={operator} key={operator.id} setState={setState} state={state}/>
                         })}
                     </ul>
                 </div>
@@ -53,7 +53,7 @@ const TerminalPage: React.FC = () => {
         case "pay-page":
             return (
                 <div className='pays-wrapper m0a'>
-                    <PayPage content={state.content!} key={state.content!.id} setState={setState}/>
+                    <PayPage content={state.content!} key={state.content!.id} setState={setState} state={state}/>
                 </div>
             )
         case "left-right":
@@ -63,12 +63,12 @@ const TerminalPage: React.FC = () => {
                         <h1>Выберите оператора для оплаты</h1>
                         <ul className='operator-list'>
                             {operators.map(operator => {
-                                return <Operator content={operator} key={operator.id} setState={setState}/>
+                                return <Operator content={operator} key={operator.id} setState={setState} state={state}/>
                             })}
                         </ul>
                     </div>
                     <div className='pays-wrapper m0a' ref={paysWrapperRef}>
-                        <PayPage content={state.content!} key={state.content!.id} setState={setState}/>
+                        <PayPage content={state.content!} key={state.content!.id} setState={setState} state={state}/>
                     </div>
                 </>
             )
@@ -79,12 +79,12 @@ const TerminalPage: React.FC = () => {
                         <h1>Выберите оператора для оплаты</h1>
                         <ul className='operator-list'>
                             {operators.map(operator => {
-                                return <Operator content={operator} key={operator.id} setState={setState}/>
+                                return <Operator content={operator} key={operator.id} setState={setState} state={state}/>
                             })}
                         </ul>
                     </div>
                     <div className='pays-wrapper m0a right' ref={paysWrapperRef}>
-                        <PayPage content={state.content!} key={state.content!.id} setState={setState}/>
+                        <PayPage content={state.content!} key={state.content!.id} setState={setState} state={state}/>
                     </div>
                 </>
             )
