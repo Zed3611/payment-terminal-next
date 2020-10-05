@@ -3,20 +3,18 @@ body {
     font-family: 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-}
-
-.main-wrapper{
     font-size: 15px;
 }
 
 .inner-pay-page{
     padding: 20px;
+    background-color: rgb(43,160,199);
     display: flex;
     flex-direction: column;
 }
 
 .success-page {
-    position: absolute;
+    position: fixed;
     width: 700px;
     display: flex;
     align-items: center;
@@ -46,18 +44,38 @@ body {
 }
 
 .list-wrapper{
+    margin: 0 auto;
     width: 700px;
-    position: absolute;
+    position: fixed;
     left: calc(50% - 350px);
     transition: left 0.35s ease-out;
 }
 
+.operator{
+    cursor: pointer;
+}
+
+.pays-wrapper{
+    margin: 0 auto;
+    width: 700px;
+    position: fixed;
+    right: calc(50% - 350px);
+    transition: right 0.35s ease-out;
+}
+
 .image-wrapper {
-    width: 150px;
+    width: 9em;
     text-align: center;
-    border-radius: 25px;
+    border-radius: 1.2em;
     margin-right: 20px;
     background: white;
+    align-content: center;
+}
+
+.operator-logo {
+    height: 4.5em;
+    max-width: 80%;
+    margin: 10px 0 10px 0;
 }
 
 @media screen and (max-width: 800px) {
@@ -84,15 +102,20 @@ body {
 }
 
 @media screen and (max-width: 550px) {
-    .main-wrapper{
+    body{
         font-size: 13px;
     }
     .image-wrapper{
-        width: 120px;
+        width: 110px;
+        height: fit-content;
+    }
+    .operator-logo{
+        margin: 5px 0 5px 0;
+        max-width: 100%;
     }
     .arrow{
-        height: 17px;
-        width: 17px;
+        height: 15px;
+        width: 15px;
     }
     .success-page.active {
         top: 335px;
@@ -100,66 +123,24 @@ body {
 }
 
 @media screen and (max-width: 440px) {
-    .main-wrapper{
-        font-size: 10px;
+    body{
+        font-size: 11px;
     }
     .image-wrapper{
-        width: 100px;
+        width: 90px;
+        max-height: 90px;
     }
     .arrow{
-        height: 15px;
-        width: 15px;
+        height: 13px;
+        width: 13px;
     }
     .success-page.active {
         top: 295px;
     }
 }
 
-.blue-color{
-    background-color: rgb(43,160,199);
-}
-
-.m0a{
-    margin: 0 auto;
-}
-
-.operator-wrapper{
-    height: 100px;
-    display: flex;
-    margin: 5px;
-    padding: 10px;
-}
-
-.operator-list{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.operator{
-    height: 100px;
-    display: flex;
-    margin: 20px 0 20px 0;
-    padding: 10px;
-    align-items: center;
-    cursor: pointer;
-}
-
-.operator-name{
-    font-size: 4em;
-}
-
-.operator-logo {
-    height: 70px;
-    max-width: 80%;
-    margin: 15px 0 15px 0;
-}
-
-.pays-wrapper{
-    width: 700px;
-    position: absolute;
-    right: calc(50% - 350px);
-    transition: right 0.35s ease-out;
+.pay-page{
+    right: 0;
 }
 
 .left{
@@ -172,22 +153,21 @@ body {
     transition: right 0.35s ease-out;
 }
 
-.hidden{
-    display: none;
+.operator-wrapper{
+    height: 6em;
+    display: flex;
+    margin: 5px;
+    background-color: rgb(43,160,199);
+    padding: 10px;
 }
 
-.pay-button{
-    margin: 5px auto;
-    width: 300px;
+.operator-name{
+    font-size: 4em;
+}
+
+.info-field, input{
     border: none;
-    cursor: pointer;
-    color: black;
-    font-size: 1.75em;
-}
-
-.success-img{
-    margin: 25px 25px 25px 5px;
-    height: 150px;
+    font-size: 1.5em;
 }
 
 .top-line{
@@ -198,13 +178,42 @@ body {
     align-items: center;
 }
 
-.info-field, input{
-    border: none;
-    font-size: 1.5em;
-}
-
 .info-fields{
     display: flex;
     justify-content: space-around;
     margin: 0 0 20px 0;
+}
+
+.operator{
+    height: 6em;
+    display: flex;
+    margin: 20px 0 20px 0;
+    background-color: rgb(43,160,199);
+    padding: 10px;
+    align-items: center;
+}
+
+.operator-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.success-img{
+    margin: 25px 25px 25px 5px;
+    height: 150px;
+}
+
+.hidden{
+    display: none;
+}
+
+.pay-button{
+    margin: 5px auto;
+    width: 300px;
+    background-color: rgb(43,160,199);
+    border: none;
+    cursor: pointer;
+    color: black;
+    font-size: 1.75em;
 }

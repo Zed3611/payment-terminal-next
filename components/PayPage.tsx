@@ -7,7 +7,7 @@ import MaskedInput from 'react-maskedinput'
 const PayPage: React.FC<IPageProps> = (props) => {
 
     const backHandler = (): void => {
-        if(props.state.page === "pay-page") {
+        if(props.state.page === "pay-page" && !done) {
             handler = null
             props.setState({page: "left-right", content: props.content})
         }
@@ -28,6 +28,7 @@ const PayPage: React.FC<IPageProps> = (props) => {
                     successPageRef.current!.classList.remove('hidden')
                     exitTimerRef.current!.classList.remove('hidden')
                     successPageRef.current!.classList.add('active')
+                    done=false
                     handler = setTimeout(()=>{
                         if(handler)
                             backHandler()
@@ -141,7 +142,7 @@ class PayInfo extends React.Component{
                 <br/><label id='phone-status' style={{fontSize:'1rem', color: 'red'}}>{this.state.phoneStatus}</label>
             </div>
             <div className='info-field'>
-                Сумма пополнения:<br/>
+                Сумма:<br/>
                 <input maxLength={4} size={3} name='sum' onChange={this._onChange}/>
                 <br/><label id='sum-status' style={{fontSize:'1rem', color: 'red'}}>{this.state.sumStatus}</label>
             </div>
