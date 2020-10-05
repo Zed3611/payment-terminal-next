@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from "react";
-import Operator from "./Operator";
 import {IOperator} from '../interfaces/IOperator'
 import {IPageState} from "../interfaces/IPageState";
-import PayPage from "./PayPage";
+import OperatorListWrapper from "./OperatorListWrapper";
+import PayPageWrapper from "./PayPageWrapper";
 
 const TerminalPage: React.FC = () => {
 
@@ -41,51 +41,30 @@ const TerminalPage: React.FC = () => {
     switch (state.page) {
         case "operator-list":
             return (
-                <div className='list-wrapper m0a'>
-                    <h1>Выберите оператора для оплаты</h1>
-                    <ul className='operator-list'>
-                        {operators.map(operator => {
-                            return <Operator content={operator} key={operator.id} setState={setState} state={state}/>
-                        })}
-                    </ul>
-                </div>
+                <OperatorListWrapper operators={operators} className={''}
+                                     setState={setState} state={state} content={state.content!}/>
             )
         case "pay-page":
             return (
-                <div className='pays-wrapper m0a'>
-                    <PayPage content={state.content!} key={state.content!.id} setState={setState} state={state}/>
-                </div>
+                <PayPageWrapper className={''} setState={setState}
+                                state={state} content={state.content!} link={paysWrapperRef}/>
             )
         case "left-right":
             return(
                 <>
-                    <div className='list-wrapper m0a left' ref={listWrapperRef}>
-                        <h1>Выберите оператора для оплаты</h1>
-                        <ul className='operator-list'>
-                            {operators.map(operator => {
-                                return <Operator content={operator} key={operator.id} setState={setState} state={state}/>
-                            })}
-                        </ul>
-                    </div>
-                    <div className='pays-wrapper m0a' ref={paysWrapperRef}>
-                        <PayPage content={state.content!} key={state.content!.id} setState={setState} state={state}/>
-                    </div>
+                    <OperatorListWrapper operators={operators} className={'left'} link={listWrapperRef}
+                                         setState={setState} state={state} content={state.content!}/>
+                    <PayPageWrapper className={''} setState={setState}
+                                    state={state} content={state.content!} link={paysWrapperRef}/>
                 </>
             )
         case "right-left":
             return(
                 <>
-                    <div className='list-wrapper m0a' ref={listWrapperRef}>
-                        <h1>Выберите оператора для оплаты</h1>
-                        <ul className='operator-list'>
-                            {operators.map(operator => {
-                                return <Operator content={operator} key={operator.id} setState={setState} state={state}/>
-                            })}
-                        </ul>
-                    </div>
-                    <div className='pays-wrapper m0a right' ref={paysWrapperRef}>
-                        <PayPage content={state.content!} key={state.content!.id} setState={setState} state={state}/>
-                    </div>
+                    <OperatorListWrapper operators={operators} className={''} link={listWrapperRef}
+                                         setState={setState} state={state} content={state.content!}/>
+                    <PayPageWrapper className={'right'} setState={setState}
+                                    state={state} content={state.content!} link={paysWrapperRef}/>
                 </>
             )
     }

@@ -8,7 +8,7 @@ const PayPage: React.FC<IPageProps> = (props) => {
 
     const backHandler = (): void => {
         if(props.state.page === "pay-page" && !done) {
-            handler = null
+            refresh()
             props.setState({page: "left-right", content: props.content})
         }
     }
@@ -37,6 +37,7 @@ const PayPage: React.FC<IPageProps> = (props) => {
                 else {
                     failPageRef.current!.classList.remove('hidden')
                     failPageRef.current!.classList.add('active')
+                    done=false
                     handler = setTimeout(()=>{
                         if(handler)
                             refresh()
@@ -87,7 +88,7 @@ const PayPage: React.FC<IPageProps> = (props) => {
             <article className='success-page hidden' ref={successPageRef}>
                 <img src={'/pics/success.jpg'} className='success-img'/>
                 Оплата выполнена успешно!
-                <div style={{margin:'0 0 50px 55px'}} className='hidden' ref={exitTimerRef}>
+                <div style={{margin:'0 0 50px 1.5em'}} className='hidden' ref={exitTimerRef}>
                     <LoadIcon/>
                 </div>
             </article>
