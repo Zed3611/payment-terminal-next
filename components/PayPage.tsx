@@ -28,8 +28,8 @@ const PayPage: React.FC<IPageProps> = (props) => {
                     successPageRef.current!.classList.remove('hidden')
                     exitTimerRef.current!.classList.remove('hidden')
                     successPageRef.current!.classList.add('active')
-                    done=false
                     handler = setTimeout(()=>{
+                        done=false
                         if(handler)
                             backHandler()
                     }, 2000)
@@ -37,7 +37,6 @@ const PayPage: React.FC<IPageProps> = (props) => {
                 else {
                     failPageRef.current!.classList.remove('hidden')
                     failPageRef.current!.classList.add('active')
-                    done=false
                     handler = setTimeout(()=>{
                         if(handler)
                             refresh()
