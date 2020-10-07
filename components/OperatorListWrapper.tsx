@@ -9,7 +9,7 @@ const OperatorListWrapper: React.FC<IOperatorListWrapper> = (props) => {
             <h1>Выберите оператора для оплаты</h1>
             <ul className='operator-list'>
                 {props.operators.map(operator => {
-                    return <Operator content={operator} key={operator.id} setState={props.setState} state={props.state}/>
+                    return <Operator content={operator} key={operator.id} setState={props.setState} state={props.state} setTransition={props.setTransition}/>
                 })}
             </ul>
         </div>

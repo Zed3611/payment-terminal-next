@@ -14,7 +14,7 @@ body {
 }
 
 .success-page {
-    position: fixed;
+    position: absolute;
     width: 700px;
     display: flex;
     align-items: center;
@@ -31,7 +31,7 @@ body {
 }
 
 .success-page.active {
-    top: 400px;
+    top: 500px;
 }
 
 .arrow {
@@ -46,7 +46,7 @@ body {
 .list-wrapper{
     margin: 0 auto;
     width: 700px;
-    position: fixed;
+    position: absolute;
     left: calc(50% - 350px);
     transition: left 0.35s ease-out;
 }
@@ -58,7 +58,7 @@ body {
 .pays-wrapper{
     margin: 0 auto;
     width: 700px;
-    position: fixed;
+    position: absolute;
     right: calc(50% - 350px);
     transition: right 0.35s ease-out;
 }
@@ -97,7 +97,7 @@ body {
         margin: 5px;
     }
     .success-page.active {
-        top: 360px;
+        top: 470px;
     }
 }
 
@@ -118,7 +118,7 @@ body {
         width: 15px;
     }
     .success-page.active {
-        top: 335px;
+        top: 420px;
     }
 }
 
@@ -135,7 +135,7 @@ body {
         width: 13px;
     }
     .success-page.active {
-        top: 295px;
+        top: 360px;
     }
 }
 
@@ -146,6 +146,7 @@ body {
 .left{
     left: -1500px;
     transition: left 0.35s ease-out;
+
 }
 
 .right{
@@ -165,9 +166,15 @@ body {
     font-size: 4em;
 }
 
+.info-field{
+    display: flex;
+    flex-direction: column;
+}
+
 .info-field, input{
     border: none;
     font-size: 1.5em;
+    font-family: Arial;
 }
 
 .top-line{
@@ -180,8 +187,8 @@ body {
 
 .info-fields{
     display: flex;
-    justify-content: space-around;
-    margin: 0 0 20px 0;
+    flex-direction: column;
+    margin: 0 auto;
 }
 
 .operator{
@@ -209,7 +216,7 @@ body {
 }
 
 .pay-button{
-    margin: 5px auto;
+    margin: 10px 0 0 0;
     width: 300px;
     background-color: rgb(43,160,199);
     border: none;

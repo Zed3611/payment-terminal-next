@@ -10,17 +10,13 @@ const PayPage: React.FC<IPageProps> = (props) => {
         if(props.state.page === "pay-page" && !done) {
             refresh()
             props.setState({page: "left-right", content: props.content})
+            props.setTransition('left-right')
         }
     }
 
     const payHandler = (): void => {
         if(!done) {
             done=true
-            if (!(payInfoRef.current!.state.phone !== '' && payInfoRef.current!.state.sum !== undefined &&
-                payInfoRef.current!.state.phoneStatus === '' && payInfoRef.current!.state.sumStatus === '')) {
-                done=false
-                return
-            }
             loadIconRef.current!.classList.remove('hidden')
             setTimeout(()=>{
                 loadIconRef.current!.classList.add('hidden')
@@ -78,8 +74,7 @@ const PayPage: React.FC<IPageProps> = (props) => {
                     </div>
                     <strong className='operator-name'>{props.content.name}</strong>
                 </section>
-                <PayInfo ref={payInfoRef}/>
-                <button className='pay-button blue-color' onClick={payHandler}>Оплатить</button>
+                <PayInfo ref={payInfoRef} onClick={payHandler}/>
             </article>
             <div className='hidden' ref={loadIconRef}>
                 <LoadIcon/>
@@ -106,13 +101,24 @@ interface IPayInfoState {
     sumStatus: string
 }
 
-class PayInfo extends React.Component{
+interface IPayInfoProps {
+    onClick: () => void
+}
+
+class PayInfo extends React.Component<IPayInfoProps>{
+
+    constructor(props: IPayInfoProps) {
+        super(props);
+        this.onClick = props.onClick
+    }
+
+    onClick: () => void
 
     state: IPayInfoState = {
         phone: '',
         sum: undefined,
-        phoneStatus: '',
-        sumStatus: '',
+        phoneStatus: 'Неверно введен номер!',
+        sumStatus: 'Диапазон суммы 1-1000',
     }
 
     _onChange = (e:any): void => {
@@ -134,19 +140,28 @@ class PayInfo extends React.Component{
         }
     }
 
+    _onSubmit = (event: any): void => {
+        event.preventDefault()
+        if (this.state.phone !== '' && this.state.sum !== undefined &&
+            this.state.phoneStatus === '' && this.state.sumStatus === '')
+            this.onClick()
+
+    }
+
     render(){
-        return (<section className='info-fields'>
+        return (<form className='info-fields'>
             <div className='info-field'>
-                Номер телефона:<br/>
-                <MaskedInput mask='+7(111)111-11-11' size={12} name='phone' onChange={this._onChange}/>
-                <br/><label id='phone-status' style={{fontSize:'1rem', color: 'red'}}>{this.state.phoneStatus}</label>
+                Номер телефона:
+                <MaskedInput mask='+7(111)111-11-11' size={12} name='phone' onChange={this._onChange} style={{'width': '8.2em'}}/>
+                <label id='phone-status' style={{fontSize:'0.7em', color: 'red', 'height': '1em'}}>{this.state.phoneStatus}</label>
             </div>
             <div className='info-field'>
-                Сумма:<br/>
-                <input maxLength={4} size={3} name='sum' onChange={this._onChange}/>
-                <br/><label id='sum-status' style={{fontSize:'1rem', color: 'red'}}>{this.state.sumStatus}</label>
+                Сумма:
+                <input maxLength={4} size={3} name='sum' onChange={this._onChange} style={{'width': '3em'}}/>
+                <label id='sum-status' style={{fontSize:'0.7em', color: 'red', 'height': '1em'}}>{this.state.sumStatus}</label>
             </div>
-        </section>)
+            <button type={'submit'} className='pay-button blue-color' onClick={this._onSubmit}>Оплатить</button>
+        </form>)
     }
 }
 

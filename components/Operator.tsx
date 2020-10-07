@@ -4,8 +4,10 @@ import {IPageProps} from "../interfaces/IPageProps";
 const Operator:React.FC<IPageProps> = (props) => {
 
     const onclickHandler = (): void => {
-        if(props.state.page === "operator-list")
+        if(props.state.page === "operator-list") {
             props.setState({page: "right-left", content: props.content})
+            props.setTransition('right-left')
+        }
     }
 
     return (
