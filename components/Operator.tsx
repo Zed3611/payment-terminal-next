@@ -12,6 +12,7 @@ const Operator:React.FC<IPageProps> = (props) => {
         }
     }
 
+    // @ts-ignore
     return (
         <OperatorStyled pointer margin='20' className='operator' onClick={onclickHandler}>
             <ImageWrapper>
