@@ -44,8 +44,8 @@ const TerminalPage: React.FC = () => {
     switch (state.page) {
         case "operator-list":
             return (
-                <OperatorListWrapper operators={operators} className={''}
-                                     setState={setState} state={state} content={state.content!} setTransition={setTransition}/>
+                <OperatorListWrapper operators={operators} className={''} setState={setState} state={state}
+                                     content={state.content!} setTransition={setTransition}/>
             )
         case "pay-page":
             return (

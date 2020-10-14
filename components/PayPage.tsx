@@ -2,6 +2,9 @@ import React, {useRef} from "react";
 import {IPageProps} from "../interfaces/IPageProps";
 import LoadIcon from "./LoadIcon";
 import MaskedInput from 'react-maskedinput'
+import {Button, InfoField, InfoForm, InfoLabel, SuccessPage, Arrow, TopLine, InnerPayPage} from '../style/PayPageStyled'
+import {OperatorStyled} from '../style/OperatorListStyled'
+import {ImageWrapper} from "../style/OperatorListStyled"
 
 
 const PayPage: React.FC<IPageProps> = (props) => {
@@ -58,38 +61,38 @@ const PayPage: React.FC<IPageProps> = (props) => {
         loadIconRef: React.RefObject<HTMLDivElement> = useRef(null),
         exitTimerRef: React.RefObject<HTMLDivElement> = useRef(null),
         done: boolean = false,
-        handler:NodeJS.Timeout | null = null
+        handler: number | null = null
 
     return (
         <main className='pay-page'>
             <h1>Введите данные оплаты</h1>
-            <article className='inner-pay-page blue-color'>
-                <section className='top-line' onClick={backHandler}>
-                    <div className="arrow"/>
+            <InnerPayPage>
+                <TopLine onClick={backHandler}>
+                    <Arrow/>
                     Назад
-                </section>
-                <section className='operator-wrapper blue-color'>
-                    <div className='image-wrapper'>
+                </TopLine>
+                <OperatorStyled>
+                    <ImageWrapper>
                         <img src={props.content.logo} className="operator-logo"/>
-                    </div>
+                    </ImageWrapper>
                     <strong className='operator-name'>{props.content.name}</strong>
-                </section>
+                </OperatorStyled>
                 <PayInfo ref={payInfoRef} onClick={payHandler}/>
-            </article>
+            </InnerPayPage>
             <div className='hidden' ref={loadIconRef}>
                 <LoadIcon/>
             </div>
-            <article className='success-page hidden' ref={successPageRef}>
+            <SuccessPage className='hidden' ref={successPageRef}>
                 <img src={'/pics/success.jpg'} className='success-img'/>
                 Оплата выполнена успешно!
                 <div style={{margin:'0 0 50px 1.5em'}} className='hidden' ref={exitTimerRef}>
                     <LoadIcon/>
                 </div>
-            </article>
-            <article className='success-page hidden' ref={failPageRef}>
+            </SuccessPage>
+            <SuccessPage className='hidden' ref={failPageRef}>
                 <img src={'/pics/fail.jpg'} className='success-img'/>
                 Сервис временно недоступен!
-            </article>
+            </SuccessPage>
         </main>
     )
 }
@@ -149,19 +152,20 @@ class PayInfo extends React.Component<IPayInfoProps>{
     }
 
     render(){
-        return (<form className='info-fields'>
-            <div className='info-field'>
-                Номер телефона:
-                <MaskedInput mask='+7(111)111-11-11' size={12} name='phone' onChange={this._onChange} style={{'width': '8.2em'}}/>
-                <label id='phone-status' style={{fontSize:'0.7em', color: 'red', 'height': '1em'}}>{this.state.phoneStatus}</label>
-            </div>
-            <div className='info-field'>
-                Сумма:
-                <input maxLength={4} size={3} name='sum' onChange={this._onChange} style={{'width': '3em'}}/>
-                <label id='sum-status' style={{fontSize:'0.7em', color: 'red', 'height': '1em'}}>{this.state.sumStatus}</label>
-            </div>
-            <button type={'submit'} className='pay-button blue-color' onClick={this._onSubmit}>Оплатить</button>
-        </form>)
+        return (
+            <InfoForm>
+                <InfoField>
+                    Номер телефона:
+                    <MaskedInput mask='+7(111)111-11-11' size={12} name='phone' onChange={this._onChange} style={{'width': '8.2em'}}/>
+                    <InfoLabel id='phone-status'>{this.state.phoneStatus}</InfoLabel>
+                </InfoField>
+                <InfoField>
+                    Сумма:
+                    <input maxLength={4} size={3} name='sum' onChange={this._onChange} style={{'width': '3em'}}/>
+                    <InfoLabel id='sum-status'>{this.state.sumStatus}</InfoLabel>
+                </InfoField>
+                <Button type={'submit'} onClick={this._onSubmit}>Оплатить</Button>
+            </InfoForm>)
     }
 }
 

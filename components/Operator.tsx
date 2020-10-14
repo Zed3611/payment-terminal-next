@@ -1,5 +1,7 @@
 import React from "react";
 import {IPageProps} from "../interfaces/IPageProps";
+import {ImageWrapper} from "../style/OperatorListStyled"
+import {OperatorStyled} from '../style/OperatorListStyled'
 
 const Operator:React.FC<IPageProps> = (props) => {
 
@@ -11,12 +13,12 @@ const Operator:React.FC<IPageProps> = (props) => {
     }
 
     return (
-        <li className="operator blue-color" onClick={onclickHandler}>
-            <div className='image-wrapper'>
+        <OperatorStyled pointer margin='20' className='operator' onClick={onclickHandler}>
+            <ImageWrapper>
                 <img src={props.content.logo} className="operator-logo"/>
-            </div>
+            </ImageWrapper>
             <strong className='operator-name'>{props.content.name}</strong>
-        </li>
+        </OperatorStyled>
     );
 }
 
