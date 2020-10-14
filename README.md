@@ -1,1 +1,1 @@
-## Ссылка на [демку](https://payment-terminal-next.vercel.app/)
+## Ссылка на [демку](https://payment-terminal-next-6u12sv2f9.vercel.app/)
