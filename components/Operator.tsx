@@ -3,6 +3,7 @@ import {IPageProps} from "../interfaces/IPageProps";
 import {ImageWrapper} from "../style/OperatorListStyled"
 import {OperatorStyled} from '../style/OperatorListStyled'
 
+
 const Operator:React.FC<IPageProps> = (props) => {
 
     const onclickHandler = (): void => {
@@ -12,7 +13,6 @@ const Operator:React.FC<IPageProps> = (props) => {
         }
     }
 
-    // @ts-ignore
     return (
         <OperatorStyled pointer margin='20' className='operator' onClick={onclickHandler}>
             <ImageWrapper>

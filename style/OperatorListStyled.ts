@@ -33,7 +33,12 @@ export const OperatorList = styled.ul`
     margin: 0;
 `
 
-export const OperatorStyled = styled.li`
+interface OperatorProps{
+    margin?: string,
+    pointer? :boolean
+}
+
+export const OperatorStyled = styled.li<OperatorProps>`
     height: 6em;
     display: flex;
     margin: ${props=> props.margin==='20' ? 
