@@ -15,7 +15,7 @@ const operators: IOperator[] = [
 const TerminalPage: React.FC = () => {
 
     const [state, setState] = useState<IPageState>({page: "operator-list"})
-    const [payClass, setPayClass] = useState<string>('')
+    const [payClass, setPayClass] = useState<string>('right')
     const [operatorClass, setOperatorClass] = useState<string>('')
 
     useEffect(()=>{
