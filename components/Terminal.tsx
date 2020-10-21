@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect} from "react";
 import {IOperator} from '../interfaces/IOperator'
 import {IPageState} from "../interfaces/IPageState";
 import OperatorListWrapper from "./OperatorListWrapper";
@@ -15,59 +15,57 @@ const operators: IOperator[] = [
 const TerminalPage: React.FC = () => {
 
     const [state, setState] = useState<IPageState>({page: "operator-list"})
-    const [transition, setTransition] = useState<'left-right' | 'right-left' | undefined>(undefined)
-
-    const listWrapperRef: React.RefObject<HTMLDivElement> = useRef(null),
-        paysWrapperRef: React.RefObject<HTMLDivElement> = useRef(null)
+    const [payClass, setPayClass] = useState<string>('')
+    const [operatorClass, setOperatorClass] = useState<string>('')
 
     useEffect(()=>{
         setTimeout(()=>{
             switch (state.page) {
                 case "left-right":
-                    paysWrapperRef.current!.classList.add('right')
-                    listWrapperRef.current!.classList.remove('left')
+                    setPayClass(() => {return('right')})
+                    setOperatorClass(() => {return('')})
                     setTimeout(()=>{
                         setState({page: "operator-list"})
                     },350)
                     break
                 case "right-left":
-                    listWrapperRef.current!.classList.add('left')
-                    paysWrapperRef.current!.classList.remove('right')
+                    setPayClass(() => {return('')})
+                    setOperatorClass(() => {return('left')})
                     setTimeout(()=>{
                         setState(prevState => {return({page: "pay-page", content: prevState.content})})
                     },350)
                     break
             }
         }, 10)
-    },[transition])
+    },[state])
 
     switch (state.page) {
         case "operator-list":
             return (
                 <OperatorListWrapper operators={operators} className={''} setState={setState} state={state}
-                                     content={state.content!} setTransition={setTransition}/>
+                                     content={state.content!}/>
             )
         case "pay-page":
             return (
                 <PayPageWrapper className={''} setState={setState}
-                                state={state} content={state.content!} link={paysWrapperRef} setTransition={setTransition}/>
+                                state={state} content={state.content!}/>
             )
         case "left-right":
             return(
                 <>
-                    <OperatorListWrapper operators={operators} className={'left'} link={listWrapperRef}
-                                         setState={setState} state={state} content={state.content!} setTransition={setTransition}/>
-                    <PayPageWrapper className={''} setState={setState}
-                                    state={state} content={state.content!} link={paysWrapperRef} setTransition={setTransition}/>
+                    <OperatorListWrapper operators={operators} className={operatorClass}
+                                         setState={setState} state={state} content={state.content!}/>
+                    <PayPageWrapper className={payClass} setState={setState}
+                                    state={state} content={state.content!}/>
                 </>
             )
         case "right-left":
             return(
                 <>
-                    <OperatorListWrapper operators={operators} className={''} link={listWrapperRef}
-                                         setState={setState} state={state} content={state.content!} setTransition={setTransition}/>
-                    <PayPageWrapper className={'right'} setState={setState}
-                                    state={state} content={state.content!} link={paysWrapperRef} setTransition={setTransition}/>
+                    <OperatorListWrapper operators={operators} className={operatorClass}
+                                         setState={setState} state={state} content={state.content!}/>
+                    <PayPageWrapper className={payClass} setState={setState}
+                                    state={state} content={state.content!}/>
                 </>
             )
     }

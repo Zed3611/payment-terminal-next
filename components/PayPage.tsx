@@ -13,7 +13,6 @@ const PayPage: React.FC<IPageProps> = (props) => {
         if(props.state.page === "pay-page" && !done) {
             refresh()
             props.setState({page: "left-right", content: props.content})
-            props.setTransition('left-right')
         }
     }
 
@@ -55,8 +54,7 @@ const PayPage: React.FC<IPageProps> = (props) => {
         exitTimerRef.current!.classList.add('hidden')
     }
 
-    let payInfoRef: React.RefObject<PayInfo> = useRef(null),
-        successPageRef: React.RefObject<HTMLDivElement> = useRef(null),
+    let successPageRef: React.RefObject<HTMLDivElement> = useRef(null),
         failPageRef: React.RefObject<HTMLDivElement> = useRef(null),
         loadIconRef: React.RefObject<HTMLDivElement> = useRef(null),
         exitTimerRef: React.RefObject<HTMLDivElement> = useRef(null),
@@ -77,7 +75,7 @@ const PayPage: React.FC<IPageProps> = (props) => {
                     </ImageWrapper>
                     <strong className='operator-name'>{props.content.name}</strong>
                 </OperatorStyled>
-                <PayInfo ref={payInfoRef} onClick={payHandler}/>
+                <PayInfo onClick={payHandler}/>
             </InnerPayPage>
             <div className='hidden' ref={loadIconRef}>
                 <LoadIcon/>
@@ -101,7 +99,8 @@ interface IPayInfoState {
     phone: string,
     sum: number | undefined,
     phoneStatus: string,
-    sumStatus: string
+    sumStatus: string,
+    showStatus: string
 }
 
 interface IPayInfoProps {
@@ -120,8 +119,9 @@ class PayInfo extends React.Component<IPayInfoProps>{
     state: IPayInfoState = {
         phone: '',
         sum: undefined,
-        phoneStatus: 'Неверно введен номер!',
-        sumStatus: 'Диапазон суммы 1-1000',
+        phoneStatus: '',
+        sumStatus: '',
+        showStatus: '0'
     }
 
     _onChange = (e:any): void => {
@@ -148,7 +148,8 @@ class PayInfo extends React.Component<IPayInfoProps>{
         if (this.state.phone !== '' && this.state.sum !== undefined &&
             this.state.phoneStatus === '' && this.state.sumStatus === '')
             this.onClick()
-
+        else
+            this.setState({['showStatus']: '1'})
     }
 
     render(){
@@ -157,12 +158,12 @@ class PayInfo extends React.Component<IPayInfoProps>{
                 <InfoField>
                     Номер телефона:
                     <MaskedInput mask='+7(111)111-11-11' size={12} name='phone' onChange={this._onChange} style={{'width': '8.2em'}}/>
-                    <InfoLabel id='phone-status'>{this.state.phoneStatus}</InfoLabel>
+                    <InfoLabel id='phone-status' opacity={this.state.showStatus}>{this.state.phoneStatus}</InfoLabel>
                 </InfoField>
                 <InfoField>
                     Сумма:
                     <input maxLength={4} size={3} name='sum' onChange={this._onChange} style={{'width': '3em'}}/>
-                    <InfoLabel id='sum-status'>{this.state.sumStatus}</InfoLabel>
+                    <InfoLabel id='sum-status' opacity={this.state.showStatus}>{this.state.sumStatus}</InfoLabel>
                 </InfoField>
                 <Button type={'submit'} onClick={this._onSubmit}>Оплатить</Button>
             </InfoForm>)

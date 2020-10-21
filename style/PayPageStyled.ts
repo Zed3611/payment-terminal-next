@@ -27,11 +27,15 @@ export const InfoField = styled.div`
         font-family: Arial;
     }
 `
+interface IInfoLabelProps {
+    opacity?: string
+}
 
-export const InfoLabel = styled.label`
+export const InfoLabel = styled.label<IInfoLabelProps>`
     font-size: 0.7em;
     color: red;
     height: 1em;
+    opacity: ${props => props.opacity};
 `
 
 export const InfoForm = styled.form`
